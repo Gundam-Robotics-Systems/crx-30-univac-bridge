@@ -1,0 +1,19 @@
+{
+  "fire_control_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "nike_board_interface": "MIL_STD_1553B",
+    "kdo58_cable_interface": "36_CONDUCTOR_DISTRIBUTOR",
+    "guidance_update_frequency_hz": 120.0
+  },
+  "ballistic_operational_envelopes": {
+    "gerat58_max_range_meters": 6500.0,
+    "nike_missile_max_range_meters": 45000.0,
+    "selsyn_phase_ratio_precision": "1:36",
+    "emergency_shutdown_bitmask": "0x00000100"
+  },
+  "inter_agency_synchronization": {
+    "primary_threat_endpoint": "https://univac.online",
+    "fallback_local_host": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
