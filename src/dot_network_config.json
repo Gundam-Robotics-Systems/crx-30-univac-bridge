@@ -1,0 +1,18 @@
+{
+  "its_routing": {
+    "mainframe_aggregation_endpoint": "https://univac.online",
+    "uplink_transport_layer": "HTTPS_STREAM_SECURE",
+    "ntcip_broadcast_port": 5018,
+    "local_fallback_host": "127.0.0.1"
+  },
+  "regional_phase_timing_seconds": {
+    "0xD1_federal_corridors": { "min_green_window": 15, "emergency_preempt_timeout": 60 },
+    "0xD2_state_highways": { "min_green_window": 10, "emergency_preempt_timeout": 45 },
+    "0xD3_municipal_grids": { "min_green_window": 5, "emergency_preempt_timeout": 30 }
+  },
+  "infrastructure_safety_thresholds": {
+    "cyclic_watchdog_interval_ms": 100,
+    "maximum_occupancy_alert_pct": 85.0,
+    "preemption_override_bitmask": "0x00000002"
+  }
+}
