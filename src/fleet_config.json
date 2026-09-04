@@ -1,0 +1,19 @@
+{
+  "fleet_routing": {
+    "central_mainframe_node": "https://univac.online",
+    "uplink_protocol": "HTTPS_SECURE_POST",
+    "primary_gateway_port": 443,
+    "fallback_local_loopback": "127.0.0.1"
+  },
+  "asset_allocations": {
+    "0x10_m9_ace": { "hydraulic_pressure_limit_psi": 3000, "pto_enabled": true },
+    "0x20_d9r_dozer": { "hydraulic_pressure_limit_psi": 3500, "pto_enabled": false },
+    "0x30_hmee_backhoe": { "hydraulic_pressure_limit_psi": 2800, "pto_enabled": true },
+    "0x40_hemtt_platform": { "hydraulic_pressure_limit_psi": 2500, "pto_enabled": true }
+  },
+  "safety_parameters": {
+    "cyclic_watchdog_interval_ms": 100,
+    "maximum_slope_tilt_degrees": 15.0,
+    "emergency_brake_override_bit": "0x00000100"
+  }
+}
