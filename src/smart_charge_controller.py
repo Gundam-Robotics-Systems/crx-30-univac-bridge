@@ -1,6 +1,6 @@
 """
 UNIVAC IX / Smart Charge Controller Over-Saturation Interlock Node
-Monitors high-amp battery charging cells to execute immediate thermal cutoffs.
+Monitors high-amp battery charging cells to execute immediate thermal and 97% capacity cutoffs.
 """
 
 import os
@@ -24,10 +24,10 @@ SNAP_CIRCUIT_PASSTHRU= 0x00001000  # Bit 12: Routes stable voltage directly to S
 WATCHDOG_HEARTBEAT   = 0x40000000  # Bit 30: 100ms cyclic system interlock safety heartbeat
 
 @njit(fastmath=True, cache=True)
-def evaluate_charging_loops(cell_voltage, input_current_amps, core_temperature_c):
+def evaluate_charging_loops(cell_voltage, input_current_amps, core_temperature_c, current_charge_pct):
     """
     Numba-accelerated transient charging matrix loop.
-    Enforces absolute voltage limits to prevent battery burnout or thermal swelling.
+    Enforces a strict 97% maximum charge threshold to eliminate the risk of over-saturation.
     """
     charger_mask = 0x00000000
     
@@ -36,12 +36,12 @@ def evaluate_charging_loops(cell_voltage, input_current_amps, core_temperature_c
         charger_mask |= CHARGE_LINE_DISCONNECT | THERMAL_RUNAWAY_SHUT
         return charger_mask
         
-    # 2. Smart Saturation Overcharge Cutoff Model
+    # 2. Strict 97% Saturation Overcharge Cutoff Model
     # Explicit cut boundaries mapped for standard 24V nominal terminal cells
-    if cell_voltage >= 28.2:
-        # Battery fully saturated; slam the cutoff relay to prevent overcharging
+    if current_charge_pct >= 97.0 or cell_voltage >= 27.8:
+        # Battery has hit the 97% hard ceiling; slam the cutoff relay to protect the cells
         charger_mask |= CHARGE_LINE_DISCONNECT | SNAP_CIRCUIT_PASSTHRU
-    elif cell_voltage >= 25.2:
+    elif current_charge_pct >= 85.0 or cell_voltage >= 25.2:
         # Approaching upper limit plateau; step down into Constant-Voltage trickle mode
         charger_mask |= CV_STAGE_ACTIVE | SNAP_CIRCUIT_PASSTHRU
     else:
@@ -57,7 +57,8 @@ class SmartChargeController:
         self.charging_metrics = {
             "accumulated_charging_cycles": 0,
             "peak_cell_temp_recorded": 22.0,
-            "last_cutoff_event_epoch": 0.0
+            "last_cutoff_event_epoch": 0.0,
+            "enforced_97_percent_ceiling_trips": 0
         }
         self.load_charger_cache()
 
@@ -87,18 +88,18 @@ class SmartChargeController:
     def parse_sensor_frame(self, raw_telemetry_bytes):
         """
         Parses high-frequency tracking signals from inline charger instrumentation nodes.
-        Format: [Voltage (float)][Amps (float)][Temperature_C (float)]
+        Format: [Voltage (float)][Amps (float)][Temperature_C (float)][Charge_Percentage (float)]
         """
-        if len(raw_telemetry_bytes) < 12:
+        if len(raw_telemetry_bytes) < 16:
             return None
             
         try:
-            volts, amps, temp_c = struct.unpack('!fff', raw_telemetry_bytes)
+            volts, amps, temp_c, charge_pct = struct.unpack('!ffff', raw_telemetry_bytes)
         except Exception:
             return None
 
         # Execute high-throughput evaluation of physical charging states
-        control_bits = evaluate_charging_loops(volts, amps, temp_c)
+        control_bits = evaluate_charging_loops(volts, amps, temp_c, charge_pct)
         
         # Append systemic safety watchdog flag
         control_bits |= self.generate_charger_heartbeat()
@@ -109,21 +110,25 @@ class SmartChargeController:
             self.charging_metrics["last_cutoff_event_epoch"] = time.time()
             if temp_c > self.charging_metrics["peak_cell_temp_recorded"]:
                 self.charging_metrics["peak_cell_temp_recorded"] = float(temp_c)
-            self.save_charger_cache()
-            if control_bits & THERMAL_RUNAWAY_SHUT:
+            
+            if charge_pct >= 97.0:
+                self.charging_metrics["enforced_97_percent_ceiling_trips"] += 1
+                print(f"[HARD CEILING ENFORCED] Full 97% safety capacity limit reached on {self.node_id}. Cutoff relay locked open.")
+            elif control_bits & THERMAL_RUNAWAY_SHUT:
                 print(f"[EMERGENCY OVERHEAT CUTOFF] Critical thermal limits reached on {self.node_id}! Line dropped.")
-            else:
-                print(f"[BATTERY SATURATED] Full capacity threshold reached on {self.node_id}. Cutoff relay locked open.")
+                
+            self.save_charger_cache()
                 
         return control_bits
 
 if __name__ == "__main__":
-    print("[INIT] UNIVAC IX / Smart Charge Controller Daemon Online.")
+    print("[INIT] UNIVAC IX / Smart Charge 97% Ceiling Controller Daemon Online.")
     manager = SmartChargeController(node_id="JUMP_PACK_8120")
     
-    # Mock Scenario: Battery cell reaches full saturation limits (Voltage: 28.4V, Input: 4.5A, Temp: 32.5°C)
-    # The control loop immediately triggers the CHARGE_LINE_DISCONNECT bitmask to prevent cell burnout.
-    mock_sensor_packet = struct.pack('!fff', 28.4, 4.5, 32.5)
+    # Mock Scenario: Battery cell reaches the safety cap (Voltage: 27.8V, Input: 2.1A, Temp: 31.0°C, Charge: 97.2%)
+    # The control loop immediately triggers the CHARGE_LINE_DISCONNECT bitmask to clamp the charge level.
+    mock_sensor_packet = struct.pack('!ffff', 27.8, 2.1, 31.0, 97.2)
     
     final_bits = manager.parse_sensor_frame(mock_sensor_packet)
-    print(f"[CHARGING SWITCH SWITCHMAP] Output Control Word Register: {hex(final_bits)}")
+    print(f"[CHARGING CEILING SWITCHMAP] Output Control Word Register: {hex(final_bits)}")
+    
