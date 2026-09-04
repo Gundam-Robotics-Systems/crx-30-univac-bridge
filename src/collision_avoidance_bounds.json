@@ -1,0 +1,19 @@
+{
+  "avoidance_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "camera_bus_interface": "MIPI_CSI_2_GEN2",
+    "imu_sampling_frequency_hz": 1000.0,
+    "local_cache_retention_days": 60
+  },
+  "safety_clamping_envelopes": {
+    "critical_time_to_impact_seconds": 0.6,
+    "maximum_safe_lateral_g_limit": 0.82,
+    "max_hydraulic_pump_pressure_psi": 2800.0,
+    "active_lean_pressure_step_psi": 1500.0
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
