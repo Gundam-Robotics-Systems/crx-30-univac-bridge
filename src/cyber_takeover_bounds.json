@@ -1,0 +1,19 @@
+{
+  "cyber_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "network_interface_bus": "ETH_PCI_EXPRESS",
+    "packet_sampling_frequency_hz": 1000.0,
+    "local_database_retention_days": 30
+  },
+  "safety_clamping_envelopes": {
+    "maximum_tolerable_threat_score": 85.0,
+    "maximum_packet_rate_per_sec": 500,
+    "payload_promotion_ratio_q_k": "50/50",
+    "infinite_loop_override_bitmask": "0x00000100"
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
