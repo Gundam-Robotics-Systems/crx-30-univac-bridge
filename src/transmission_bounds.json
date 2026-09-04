@@ -6,6 +6,7 @@
     "local_cache_retention_days": 60
   },
   "safety_clamping_envelopes": {
+    "maximum_charge_percentage_ceiling": 97.0,
     "maximum_hydraulic_line_psi": 310.0,
     "maximum_fluid_operating_temp_c": 118.0,
     "engine_over_rev_protection_limit_rpm": 6800.0,
