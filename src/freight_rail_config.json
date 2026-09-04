@@ -1,0 +1,18 @@
+{
+  "logistics_backbone": {
+    "mainframe_aggregation_endpoint": "https://univac.online",
+    "uplink_transport_layer": "HTTPS_STREAM_SECURE",
+    "rail_telemetry_port": 6019,
+    "local_fallback_host": "127.0.0.1"
+  },
+  "corridor_profiles": {
+    "0xE1_class_1_freight": { "signaling_protocol": "PTC_INTEROPERABLE", "vlf_beacon_hz": 0 },
+    "0xE2_wads_subterranean": { "signaling_protocol": "HARDWIRED_PULSE_CODE", "vlf_beacon_hz": 24000 },
+    "0xE3_sddc_deployment": { "signaling_protocol": "MIL_STD_2045_EXPLICIT", "vlf_beacon_hz": 0 }
+  },
+  "subsurface_safety_limits": {
+    "cyclic_watchdog_interval_ms": 100,
+    "max_allowable_axle_load_tons": 36.0,
+    "emergency_brake_dump_bitmask": "0x00000100"
+  }
+}
