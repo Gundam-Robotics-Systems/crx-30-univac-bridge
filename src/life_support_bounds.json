@@ -1,0 +1,19 @@
+{
+  "environmental_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "sensor_bus_interface": "MODBUS_RTU",
+    "sampling_frequency_hz": 10.0,
+    "local_manifest_retention_days": 90
+  },
+  "safety_clamping_envelopes": {
+    "maximum_allowable_tds_ppm": 500.0,
+    "maximum_line_pressure_psi": 85.0,
+    "optimal_storage_temperature_c": 4.0,
+    "emergency_vent_trigger_bitmask": "0x00008000"
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
