@@ -1,0 +1,19 @@
+{
+  "environmental_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "relay_interface_bus": "CAN_J1939_PROP_D",
+    "weather_sampling_frequency_hz": 10.0,
+    "local_cache_retention_days": 30
+  },
+  "safety_clamping_envelopes": {
+    "maximum_safe_highway_tire_psi": 35.0,
+    "minimum_safe_sand_tire_psi": 12.0,
+    "maximum_wiper_sweep_frequency_hz": 2.5,
+    "pneumatic_leak_shutdown_threshold_psi_per_sec": 4.0
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
