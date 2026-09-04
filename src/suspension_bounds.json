@@ -1,0 +1,19 @@
+{
+  "chassis_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "actuator_interface_bus": "CAN_J1939_PROP_C",
+    "imu_sampling_frequency_hz": 500.0,
+    "local_cache_retention_days": 60
+  },
+  "safety_clamping_envelopes": {
+    "maximum_accumulator_pressure_psi": 2800.0,
+    "maximum_allowable_body_roll_degrees": 12.0,
+    "brake_dive_stiffening_threshold_g": 0.45,
+    "recoil_lock_stiffness_multiplier": 4.5
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
