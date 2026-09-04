@@ -1,0 +1,19 @@
+{
+  "aviation_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "sdr_rf_interface_bus": "USB_3.2_GEN2",
+    "fmcw_center_frequency_mhz": 433.500,
+    "sideband_bandwidth_step_khz": 50.0
+  },
+  "flight_safety_envelopes": {
+    "maximum_operating_altitude_feet": 12500.0,
+    "minimum_safe_snr_db": 12.0,
+    "max_allowed_channel_drift_khz": 15.0,
+    "emergency_autorotation_trigger_bitmask": "0x00000100"
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
