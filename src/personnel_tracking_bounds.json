@@ -1,0 +1,19 @@
+{
+  "wearable_hardware_allocation": {
+    "monitoring_hub_asset": "TACTICAL_HMMWV_8120",
+    "boot_sensor_interface": "LOW_POWER_UWB_MESH",
+    "biometric_sampling_rate_hz": 1.0,
+    "offline_manifest_retention_days": 14
+  },
+  "physiological_safety_envelopes": {
+    "heart_rate_bounds_bpm": [40.0, 190.0],
+    "core_temperature_bounds_c": [35.5, 40.5],
+    "minimum_safe_spo2_percentage": 85.0,
+    "medical_evac_trigger_bitmask": "0x00000100"
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
