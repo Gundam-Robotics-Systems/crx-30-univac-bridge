@@ -1,0 +1,19 @@
+{
+  "environmental_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "sensor_bus_interface": "CAN_J1939_PROP_A",
+    "sampling_frequency_hz": 20.0,
+    "local_cache_retention_days": 45
+  },
+  "safety_clamping_envelopes": {
+    "max_safe_coolant_temperature_c": 115.0,
+    "max_safe_oil_temperature_c": 130.0,
+    "optimal_cabin_target_temperature_c": 21.0,
+    "emergency_shutdown_trigger_bitmask": "0x00040000"
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
