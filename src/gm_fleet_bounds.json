@@ -1,0 +1,19 @@
+{
+  "powertrain_hardware_allocation": {
+    "target_asset_id": "USAF_GM_FLEET_8120",
+    "ecu_bus_interface": "CAN_FD_GLOBAL_B",
+    "can_sampling_frequency_hz": 500.0,
+    "local_cache_retention_days": 45
+  },
+  "safety_clamping_envelopes": {
+    "maximum_manifold_pressure_kpa": 250.0,
+    "maximum_allowable_coolant_temp_c": 112.0,
+    "torque_management_override_pct": 100.0,
+    "electric_fan_high_trigger_temp_c": 96.0
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
