@@ -1,0 +1,19 @@
+{
+  "shielding_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "thermocouple_bus_interface": "CAN_J1939_PROP_E",
+    "sensor_sampling_frequency_hz": 100.0,
+    "local_cache_retention_days": 60
+  },
+  "safety_clamping_envelopes": {
+    "legacy_fault_temperature_threshold_f": 150.0,
+    "legacy_fault_timeout_seconds": 10.0,
+    "critical_combustion_flux_derivative_f_per_sec": 15.0,
+    "absolute_structural_melt_cutoff_f": 285.0
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
