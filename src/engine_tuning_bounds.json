@@ -1,0 +1,18 @@
+{
+  "tuner_hardware_configuration": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "ecu_bus_interface": "CAN_J1939",
+    "ecu_update_frequency_hz": 250.0,
+    "offline_buffer_max_records": 86400
+  },
+  "safety_clamping_envelopes": {
+    "max_authorized_injection_ms": 6.500,
+    "min_authorized_injection_ms": 0.850,
+    "lean_safeguard_afr_limit": 14.7,
+    "maximum_safe_operating_angle_degrees": 45.0
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_cache_partition": "/var/log/ecu_tuning/"
+  }
+}
