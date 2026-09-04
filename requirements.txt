@@ -1,0 +1,12 @@
+# Low-Latency Mathematical Optimization & Compiler Packages
+numpy>=1.24.0
+numba>=0.58.0
+
+# Hardware Serial & Real-Time Network Socket Bridges
+pyserial>=3.5
+pyusb>=1.2.1
+pyyaml>=6.0.1
+
+# Automated Testing & Diagnostic Protocol Modules
+pytest>=7.3.1
+requests>=2.31.0
