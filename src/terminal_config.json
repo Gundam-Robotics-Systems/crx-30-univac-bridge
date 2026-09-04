@@ -1,0 +1,18 @@
+{
+  "terminal_routing": {
+    "mainframe_aggregation_endpoint": "https://univac.online",
+    "uplink_transport_layer": "HTTPS_STREAM_SECURE",
+    "terminal_telemetry_port": 7020,
+    "local_fallback_host": "127.0.0.1"
+  },
+  "facility_parameters": {
+    "0xA1_strategic_airlift": { "floor_lock_type": "PNEUMATIC_CLAW", "allowable_cg_envelope_pct": 12.5 },
+    "0xA2_roro_maritime": { "floor_lock_type": "CHAIN_TENSION_RAMP", "allowable_cg_envelope_pct": 25.0 },
+    "0xA3_tactical_parking": { "floor_lock_type": "YARD_CHOCK_SOLENOID", "allowable_cg_envelope_pct": 0.0 }
+  },
+  "automation_watchdogs": {
+    "cyclic_watchdog_interval_ms": 100,
+    "max_crane_trolley_speed_knots": 8.0,
+    "emergency_chock_lock_bitmask": "0x00000100"
+  }
+}
