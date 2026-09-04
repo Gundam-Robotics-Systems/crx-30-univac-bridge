@@ -1,0 +1,19 @@
+{
+  "hardware_layer": {
+    "target_platform": "HMMWV_M1151",
+    "com_port": "COM3",
+    "baud_rate": 9600,
+    "voltage_reference": "24V_DC"
+  },
+  "mesh_synchronization": {
+    "univac_listener_ip": "127.0.0.1",
+    "univac_listener_port": 8080,
+    "dds_qos_profile": "LOW_LATENCY_TRACKING",
+    "watchdog_interval_ms": 100
+  },
+  "targeting_boundaries": {
+    "max_slant_range_meters": 3000.0,
+    "selsyn_phase_frequency_hz": 120.0,
+    "kinematic_error_clamp": 0.01
+  }
+}
