@@ -1,0 +1,19 @@
+{
+  "transmission_hardware_allocation": {
+    "target_asset_id": "USAF_FLEET_TUNER_8120",
+    "tcu_bus_interface": "CAN_FD_PRIMARY_BUS",
+    "sampling_frequency_hz": 1000.0,
+    "local_cache_retention_days": 60
+  },
+  "safety_clamping_envelopes": {
+    "maximum_hydraulic_line_psi": 310.0,
+    "maximum_fluid_operating_temp_c": 118.0,
+    "engine_over_rev_protection_limit_rpm": 6800.0,
+    "automatic_clutch_overlap_limit_ms": 40
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
