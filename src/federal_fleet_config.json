@@ -1,0 +1,19 @@
+{
+  "network_backbone": {
+    "primary_mainframe_url": "https://univac.online",
+    "secure_channel_mode": "TLS_1.3_ENCRYPTED",
+    "primary_destination_port": 443,
+    "local_redundancy_loop": "127.0.0.1"
+  },
+  "agency_allocations": {
+    "0xF1_fema_hss": { "radio_network_mode": "APCO_P25_PHASE_2", "satcom_override": true },
+    "0xF2_cbp_usbp": { "radio_network_mode": "APCO_P25_ENCRYPTED", "satcom_override": true },
+    "0xF3_fbi_usms": { "radio_network_mode": "TACTICAL_SECURE_VHF", "satcom_override": false },
+    "0xF4_nps_usfs": { "radio_network_mode": "HF_REMOTE_HF_LINK", "satcom_override": true }
+  },
+  "emergency_safety_bounds": {
+    "watchdog_cycle_ms": 100,
+    "max_authorized_speed_code3_mph": 85,
+    "automatic_flir_activation_range_meters": 50.0
+  }
+}
