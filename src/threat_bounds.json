@@ -1,0 +1,19 @@
+{
+  "threat_hardware_allocation": {
+    "target_asset_id": "TACTICAL_HMMWV_8120",
+    "optical_interface_bus": "PCI_EXPRESS_GEN3_4LANE",
+    "video_processing_frequency_hz": 120.0,
+    "local_threat_retention_days": 30
+  },
+  "safety_clamping_envelopes": {
+    "minimum_bore_circularity_index": 0.88,
+    "valid_rifling_groove_bounds": [4.0, 8.0],
+    "maximum_effective_optical_range_meters": 150.0,
+    "smoke_deployment_delay_ms": 15
+  },
+  "inter_agency_sync": {
+    "primary_cloud_relay": "https://univac.online",
+    "fallback_local_ip": "127.0.0.1",
+    "watchdog_cycle_interval_ms": 100
+  }
+}
